@@ -1,0 +1,7 @@
+Line 13: Class RichUtil1.EListBox of control EListBox1 was not a loaded control class.
+Line 19: The property name _ExtentX in EListBox1 is invalid.
+Line 20: The property name _ExtentY in EListBox1 is invalid.
+Line 32: The property name RowDivisions in EListBox1 is invalid.
+Line 33: The property name ColumnDivisions in EListBox1 is invalid.
+Line 34: The property name Columns in EListBox1 is invalid.
+Line 40: The property name Column in EListBox1 is invalid.

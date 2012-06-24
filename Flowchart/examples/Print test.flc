@@ -1,0 +1,8 @@
+## FlowChart File 1.0
+"Circle",12.5,39.48927,851.0425,785.0863,"",2
+"ArrowLine",732.5,699.5067,1076,370.9903,"True",2
+"Terminator",1158.5,255.495,500,200,"Hello, here you are.",2
+"Decision",405.5,1683.532,515.0803,950.0671,"More text to test",2
+"InOut",1665.5,2730.54,500,200,"By Richard Fung, 2000.",2
+"Rect",1308.5,1557.51,500,200,"Today is a nice day.",2
+"Line",1296.5,2151.503,631.9811,0,"Let's go biking",2

@@ -1,0 +1,29 @@
+## FlowChart File 1.0
+"Terminator",845,97,260,98,"0¿Start",2
+"ArrowLine",975,195,0,127,"0¿",2
+"InOut",780,325,455,162,"0¿Display ''Enter year''",3
+"ArrowLine",975,488,0,65,"0¿",2
+"InOut",780,552,455,98,"0¿Get year (int)",3
+"Decision",715,780,520,260,"0¿Is year % 4 == 0",2
+"ArrowLine",715,910,-221,0,"0¿F",2
+"InOut",65,812,455,162,"0¿Display ''year is  not a leap year''",2
+"ArrowLine",975,618,0,162,"0¿",2
+"ArrowLine",975,1040,0,98,"0¿T",2
+"InOut",715,1495,520,130,"0¿Display ''year is a leap year''",2
+"ArrowLine",975,1625,0,292,"0¿",2
+"Terminator",877,1917,195,98,"0¿End",2
+"ArrowLine",325,975,0,812,"0¿",2
+"ArrowLine",650,1788,325,0,"0¿",2
+"Decision",748,1137,455,260,"0¿Is year % 400 == 0",2
+"ArrowLine",975,1397,0,98,"0¿T",2
+"ArrowLine",1203,1267,227,0,"0¿F",2
+"Decision",1430,1138,455,260,"0¿Is year % 100 != 0",2
+"ArrowLine",1885,1268,149,0,"0¿F",1
+"InOut",2015,1138,292,260,"0¿Display ''year is not a leap year''",3
+"ArrowLine",1658,1398,0,162,"0¿T",2
+"ArrowLine",1658,1560,-448,0,"0¿",2
+"ArrowLine",2112,1398,0,390,"0¿",2
+"Text",1885,97,390,98,"0¿By Andy Fung.",2
+"Line",325,1788,325,0,"0¿",2
+"ArrowLine",1528,1788,-552,0,"0¿",2
+"Line",2112,1788,-585,0,"0¿",2

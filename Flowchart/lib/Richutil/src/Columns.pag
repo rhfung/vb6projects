@@ -1,0 +1,179 @@
+VERSION 5.00
+Begin VB.PropertyPage Columns 
+   Caption         =   "Columns"
+   ClientHeight    =   3495
+   ClientLeft      =   0
+   ClientTop       =   0
+   ClientWidth     =   5925
+   LockControls    =   -1  'True
+   PaletteMode     =   0  'Halftone
+   ScaleHeight     =   3495
+   ScaleWidth      =   5925
+   Begin VB.CommandButton cmdUpdate 
+      Caption         =   ">"
+      Height          =   375
+      Left            =   2880
+      TabIndex        =   5
+      Top             =   360
+      Width           =   375
+   End
+   Begin VB.ListBox lstColumnWidths 
+      Height          =   2985
+      Left            =   3240
+      TabIndex        =   4
+      Top             =   240
+      Width           =   2175
+   End
+   Begin VB.CheckBox chkColumnDivisions 
+      Caption         =   "Column Divisions (grid)"
+      Height          =   285
+      Left            =   120
+      TabIndex        =   3
+      Top             =   1320
+      Width           =   2700
+   End
+   Begin VB.CheckBox chkRowDivisions 
+      Caption         =   "Row Divisions (grid)"
+      Height          =   285
+      Left            =   120
+      TabIndex        =   2
+      Top             =   840
+      Width           =   2700
+   End
+   Begin VB.TextBox txtColumns 
+      Height          =   330
+      Left            =   90
+      TabIndex        =   1
+      Top             =   360
+      Width           =   2700
+   End
+   Begin VB.Label lblColumns 
+      Caption         =   "Columns:"
+      Height          =   240
+      Left            =   90
+      TabIndex        =   0
+      Top             =   120
+      Width           =   2700
+   End
+End
+Attribute VB_Name = "Columns"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = True
+Attribute VB_PredeclaredId = False
+Attribute VB_Exposed = True
+Attribute VB_Description = "Enhanced List Box Columns Property Page"
+'/// Enhanced List Box Columns Property Page
+Option Explicit
+
+Private Function Validate() As Boolean
+    If Not IsNumeric(txtColumns) Then
+        MsgBox "Columns must be a number.", vbExclamation
+        Validate = False
+    ElseIf Val(txtColumns) < 0 Then
+        MsgBox "Has to be a number greater than zero", vbExclamation
+        Validate = False
+    Else
+        'size lstColumnWidths here
+        Validate = True
+    End If
+End Function
+
+Private Sub chkColumnDivisions_Click()
+    Changed = True
+End Sub
+
+
+Private Sub chkRowDivisions_Click()
+    Changed = True
+End Sub
+
+
+Private Sub cmdUpdate_Click()
+    If Validate Then
+        PropertyPage_ApplyChanges
+        PropertyPage_SelectionChanged
+    End If
+End Sub
+
+Private Sub lstColumnWidths_DblClick()
+    Dim strWidth As String
+    
+    strWidth = InputBox("Enter a new column width in pixels.", "EListBox", lstColumnWidths)
+    
+    If Not IsNumeric(txtColumns) Then
+        MsgBox "Columns must be a number.", vbExclamation
+        Exit Sub
+    ElseIf Val(txtColumns) < 0 Then
+        MsgBox "Has to be a number greater than zero", vbExclamation
+        Exit Sub
+    Else
+        lstColumnWidths.List(lstColumnWidths.ListIndex) = Val(strWidth)
+        Changed = True
+    End If
+End Sub
+
+
+Private Sub txtColumns_Change()
+    Changed = True
+End Sub
+
+
+Private Sub PropertyPage_ApplyChanges()
+    Dim lngCol As Long
+    Dim objW   As EListBox
+    
+    Set objW = SelectedControls(0)
+
+    objW.ColumnDivisions = (chkColumnDivisions.Value = vbChecked)
+    objW.RowDivisions = (chkRowDivisions.Value = vbChecked)
+    
+    If Validate Then
+        objW.Columns = Val(txtColumns)
+        
+        For lngCol = 1 To objW.Columns
+            'objW.Column(lngCol) = Val(lstColumnWidths.List(lngCol))
+            If lngCol <= lstColumnWidths.ListCount Then
+                objW.Column(lngCol) = Val(lstColumnWidths.List(lngCol - 1))
+            End If
+        Next lngCol
+    Else
+        txtColumns = objW.Columns
+    End If
+End Sub
+
+
+
+Private Sub PropertyPage_SelectionChanged()
+    Dim lngCol As Long
+    Dim objW   As EListBox
+    
+    Set objW = SelectedControls(0)
+    
+    chkColumnDivisions.Value = (objW.ColumnDivisions And vbChecked)
+    chkRowDivisions.Value = (objW.RowDivisions And vbChecked)
+    txtColumns.Text = objW.Columns
+    lstColumnWidths.Clear
+    'lstColumnWidths.ListCount = objW.Columns
+    'lstColumnWidths.Column(1) = lstColumnWidths.Width \ Screen.TwipsPerPixelX
+    
+    For lngCol = 1 To objW.Columns
+        lstColumnWidths.AddItem objW.Column(lngCol)
+        'lstColumnWidths.List(lngCol) = objW.Column(lngCol)
+    Next lngCol
+End Sub
+
+
+'Private Sub txtColumns_Validate(Cancel As Boolean)
+'    'does not work in property pages
+'    If Not IsNumeric(txtColumns) Then
+'        MsgBox "Columns must be a number.", vbExclamation
+'        Cancel = True
+'    ElseIf Val(txtColumns) < 0 Then
+'        MsgBox "Has to be a number greater than zero", vbExclamation
+'        Cancel = True
+'    Else
+'        lstColumnWidths.ListCount = Val(txtColumns)
+'        lstColumnWidths.Refresh
+'    End If
+'End Sub
+

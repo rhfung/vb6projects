@@ -1,0 +1,26 @@
+February 7, 2002
+Flowprev_main.* - useless
+
+
+March 2, 2001
+DONE 7. - Cut {##FlowChartItem##Left,Top,Width,Height, Text,Tag1,Tag2,Tag3,...} in program only, much easier: I would have to create a mClipboard class based on FClipboard object
+DONE 8. - Copy
+DONE 9. - Paste
+DONE 2. - Duplication
+DONE 13. - Multiple-object selection w/ rubber band rectangle (HARD) 
+	1. Write to actually select objects 2. Write other code to select lines 3. Write code to store the selected objects 4. Write more code so that once you select objects, you can move it, copy it, resize it
+	Completed Feb 2002
+- Copy && cut with multiple selection
+DONE 12. - Change fonts for specific objects (Tag2)
+DONE 10. - Drag-drop open
+SKIP 11. - Drag-drop insert picture
+DONE    - Displaying the && character e.g. &V
+DONE 1. - In picture, no text can be changed (disable text menu like in a circle or line) 
+DONE 3. - Percentage scaling & properties for pictures
+DONE 4. - Save as a picture the displayed area (new picture box or in the same displayed one)
+DONE 5. - Information about the printer in the help menu (write to log)
+DONE 6. - text box to fit all the text
+
+Newer loading and saving stuff
+clipboard class
+Keyboard font size change Ctrl+Shift+< and >

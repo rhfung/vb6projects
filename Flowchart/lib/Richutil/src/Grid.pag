@@ -1,0 +1,93 @@
+VERSION 5.00
+Begin VB.PropertyPage Grid 
+   Caption         =   "Grid"
+   ClientHeight    =   3495
+   ClientLeft      =   0
+   ClientTop       =   0
+   ClientWidth     =   5925
+   PaletteMode     =   0  'Halftone
+   ScaleHeight     =   3495
+   ScaleWidth      =   5925
+   Begin VB.CheckBox chkDblClickCheck 
+      Caption         =   "Check on DblClick() event"
+      Height          =   285
+      Left            =   90
+      TabIndex        =   1
+      Top             =   960
+      Width           =   2700
+   End
+   Begin VB.CheckBox chkCheckBoxes 
+      Caption         =   "Check Boxes"
+      Height          =   285
+      Left            =   90
+      TabIndex        =   0
+      Top             =   120
+      Width           =   2700
+   End
+   Begin VB.Label Label4 
+      Caption         =   "Enhanced list box developed by Richard H Fung, 2003."
+      ForeColor       =   &H00808000&
+      Height          =   255
+      Left            =   480
+      TabIndex        =   5
+      Top             =   2640
+      Width           =   4695
+   End
+   Begin VB.Label Label3 
+      Caption         =   "IMPORTANT: All list items in this list start at index 1, NOT the C++ or C# base 0."
+      ForeColor       =   &H000000C0&
+      Height          =   495
+      Left            =   480
+      TabIndex        =   4
+      Top             =   1800
+      Width           =   4695
+   End
+   Begin VB.Label Label2 
+      Caption         =   "Similar to the Style property of ListBox.  Determines if you want a check box list."
+      Height          =   615
+      Left            =   3120
+      TabIndex        =   3
+      Top             =   120
+      Width           =   2655
+   End
+   Begin VB.Label Label1 
+      Caption         =   "Only applies when check boxes are shown."
+      Height          =   375
+      Left            =   3120
+      TabIndex        =   2
+      Top             =   960
+      Width           =   2655
+   End
+End
+Attribute VB_Name = "Grid"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = True
+Attribute VB_PredeclaredId = False
+Attribute VB_Exposed = True
+Attribute VB_Description = "Enhanced List Box Grid Property Page"
+'/// Enhanced List Box Grid Property Page
+Option Explicit
+
+Private Sub chkDblClickCheck_Click()
+    Changed = True
+End Sub
+
+
+Private Sub chkCheckBoxes_Click()
+    Changed = True
+End Sub
+
+
+Private Sub PropertyPage_ApplyChanges()
+    SelectedControls(0).DblClickCheck = (chkDblClickCheck.Value = vbChecked)
+    SelectedControls(0).CheckBoxes = (chkCheckBoxes.Value = vbChecked)
+End Sub
+
+
+
+Private Sub PropertyPage_SelectionChanged()
+    chkDblClickCheck.Value = (SelectedControls(0).DblClickCheck And vbChecked)
+    chkCheckBoxes.Value = (SelectedControls(0).CheckBoxes And vbChecked)
+End Sub
+
+
