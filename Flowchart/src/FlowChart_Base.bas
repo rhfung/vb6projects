@@ -566,7 +566,7 @@ End Function
 #End If
 
 
-Public Sub CPlusPlus() 'Main()
+Public Sub Main()
     #If Prev = 0 Then
     Dim objRegistry As RegEntry
     #Else

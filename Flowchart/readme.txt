@@ -9,8 +9,9 @@ with the animation file format.
 
 Requires:
 
-Microsoft Visual Basic 6 runtime
-Microsoft Word 2007 for spell checker
+* Microsoft Visual Basic 6 runtime
+* Microsoft Word 2007 for spell checker
+* RichUtil project: RichUtil.dll and RichUtil1.ocx
 
 Copyright (C) 2000-2003, 2012, Richard H Fung
 

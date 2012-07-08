@@ -4,7 +4,7 @@ lines to each other. It provides an auto-saving feature for end users.
 
 Requires:
 
-Microsoft Visual Basic 5 runtime
+Microsoft Visual Basic 6 runtime
 
 Copyright (C) 2000, 2012, Richard H Fung
 

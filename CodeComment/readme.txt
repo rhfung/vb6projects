@@ -5,7 +5,9 @@ slashes (///). Comments are placed inside the code block.
 
 Requires:
 
-Microsoft Visual Basic 6.0 IDE
+* Microsoft Visual Basic 6.0 IDE
+* Microsoft Office XP or equivalent
+* RichUtil project: RichUtil.dll and RichUtil1.ocx
 
 Copyright (C) 2003, 2012, Richard H Fung
 

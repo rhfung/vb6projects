@@ -28,10 +28,9 @@ MinorVer=3
 RevisionVer=4
 AutoIncrementVer=1
 ServerSupportFiles=0
-VersionComments="Parameters: [filename] 15 November 2003"
-VersionCompanyName="Hai Consultants Inc."
+VersionComments="Parameters: [filename] "
 VersionFileDescription="In View"
-VersionLegalCopyright="Copyright (C) 2001-2002, Richard Fung."
+VersionLegalCopyright="Copyright (C) 2001-2002, Richard Fung. 15 November 2003, 8 July 2012"
 VersionProductName="In View"
 CondComp="VB6 = 1"
 CompilationType=0

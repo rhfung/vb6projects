@@ -56,7 +56,7 @@ Begin VB.Form frmAbout
       Y2              =   1687.886
    End
    Begin VB.Label lblDescription 
-      Caption         =   "By Richard Fung, 2001-2003.  Based on a design developed at high school computer class.  Built in Visual Basic 5.  Beta version."
+      Caption         =   $"Inview_About.frx":00E7
       ForeColor       =   &H00000000&
       Height          =   1170
       Left            =   1050

@@ -908,8 +908,11 @@ Private Function GetChrRowCol(ByVal Position As Long) As TRC
     'an array always returns using left-array = right-source-array
     'GetChrRowCol = lngReturn
 
-    GetChrRowCol.Row = Position \ mlngSoftCols
-    GetChrRowCol.Col = Position Mod mlngSoftCols
+    'guard against divide by 0
+    If mlngSoftCols > 0 Then
+        GetChrRowCol.Row = Position \ mlngSoftCols
+        GetChrRowCol.Col = Position Mod mlngSoftCols
+    End If
 End Function
 
 

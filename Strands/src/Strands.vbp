@@ -28,9 +28,8 @@ RevisionVer=9
 AutoIncrementVer=1
 ServerSupportFiles=0
 VersionComments="April 18, 2000"
-VersionCompanyName="Hai Consultants Inc."
 VersionFileDescription="Strands"
-VersionLegalCopyright="Copyright (C) Richard Fung, 2000."
+VersionLegalCopyright="Copyright (C) Richard Fung, 2000, 2012. Compiled 8 July 2012."
 VersionProductName="Strands"
 CondComp="Cheats = 0"
 CompilationType=0
