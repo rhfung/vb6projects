@@ -1,15 +1,21 @@
 RichUtil is a collection of reusuable libraries and controls for 
 Visual Basic 6 applications.
 
+**RichUtil project is deprecated in favour of RichUtil2. Please ask Richard H Fung for access to the latest repository.**
+
 * EListBox is an enhanced list box ActiveX control
 * ESingleArray is an array that integerates with VB6 IDE
 * ETextSort is a library that provides a sorted array. 
   Sorting is conducted on add.
 * About dialog box for the control is included.
 
-Requires:
+Requirements
+------------
 
 Microsoft Visual Basic 6 runtime
+
+License
+-------
 
 Copyright (C) 2003, 2012, Richard H Fung
 
@@ -26,4 +32,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+Release Notes
+-------------
+
 Build Date: June 26, 2003
+
+**RichUtil project is deprecated in favour of RichUtil2. RichUtil2 has releases in 2004 and 2007.**
