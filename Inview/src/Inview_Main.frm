@@ -4,8 +4,8 @@ Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form frmMain 
    Caption         =   "In View"
    ClientHeight    =   5100
-   ClientLeft      =   120
-   ClientTop       =   950
+   ClientLeft      =   165
+   ClientTop       =   735
    ClientWidth     =   6990
    ClipControls    =   0   'False
    Icon            =   "Inview_Main.frx":0000
@@ -35,7 +35,7 @@ Begin VB.Form frmMain
    Begin VB.TextBox txtNewEdit 
       BeginProperty Font 
          Name            =   "Courier New"
-         Size            =   10
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -76,8 +76,8 @@ Begin VB.Form frmMain
       ClipControls    =   0   'False
       Height          =   3495
       Left            =   960
-      ScaleHeight     =   3460
-      ScaleWidth      =   4420
+      ScaleHeight     =   3435
+      ScaleWidth      =   4395
       TabIndex        =   2
       TabStop         =   0   'False
       Top             =   840
@@ -90,8 +90,8 @@ Begin VB.Form frmMain
          ForeColor       =   &H80000008&
          Height          =   3015
          Left            =   0
-         ScaleHeight     =   3020
-         ScaleWidth      =   3860
+         ScaleHeight     =   3015
+         ScaleWidth      =   3855
          TabIndex        =   3
          Top             =   0
          Width           =   3855
@@ -126,8 +126,8 @@ Begin VB.Form frmMain
       TabStop         =   0   'False
       Top             =   0
       Width           =   6975
-      _ExtentX        =   12294
-      _ExtentY        =   8714
+      _ExtentX        =   12303
+      _ExtentY        =   8705
       MultiRow        =   -1  'True
       _Version        =   393216
       BeginProperty Tabs {1EFB6598-857C-11D1-B16A-00C0F0283628} 
@@ -154,7 +154,7 @@ Begin VB.Form frmMain
    Begin VB.Label lblMessage 
       BeginProperty Font 
          Name            =   "Arial"
-         Size            =   8.5
+         Size            =   8.25
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -239,6 +239,13 @@ Begin VB.Form frmMain
          Caption         =   "Find Next"
          Index           =   1
          Shortcut        =   {F4}
+      End
+      Begin VB.Menu mnuEditSep5 
+         Caption         =   "-"
+      End
+      Begin VB.Menu mnuFindCaseInsensitive 
+         Caption         =   "Find case insensitive..."
+         Index           =   0
       End
       Begin VB.Menu mnuEditSep4 
          Caption         =   "-"
@@ -1728,6 +1735,129 @@ Private Sub mnuFileSave_Click(Index As Integer)
     Else
         MsgBox "An error was encountered when saving the file.  " & Err.Description & " " & Err.Number, vbExclamation, "Save File"
     End If
+End Sub
+
+Private Function UcaseByte(ByVal B As Byte) As Byte
+    If B >= 97 And B <= 122 Then 'lowercase ASCII characters
+        UcaseByte = B - 32
+    Else
+        UcaseByte = B
+    End If
+End Function
+
+Private Sub mnuFindCaseInsensitive_Click(Index As Integer)
+    Static strFind    As String
+    Dim lngCounter    As Long
+    Dim bytSearchA()  As Byte
+    Dim bytSearchW()  As Byte
+    Dim bytFound      As Byte
+    Dim blnFoundA     As Boolean
+    Dim blnFoundW     As Boolean
+    Dim lngLenW       As Long
+    Dim lngPos        As Long
+    Dim lngStart      As Long 'found start
+    Dim lngBeginS     As Long 'begin search point
+    Dim strAppend     As String
+    
+    On Error GoTo Handler
+    If mlngFileType = conHex Then strAppend = "  This searches both ASCII and Unicode text."
+    If Len(strFind) = 0 Then 'find next
+        strFind = InputBox("Type in the text that you want to find." & strAppend, "Find", strFind)
+    ElseIf Index = 0 Then
+        strFind = InputBox("Type in the text that you want to find." & strAppend, "Find", strFind)
+    End If
+    
+    MousePointer = vbHourglass
+    
+    
+    If Len(strFind) And mlngFileType = conHex Then
+        lblMessage = "Searching for ASCII/Unicode text..."
+        lblMessage.Refresh
+        
+        'always check case insensitive
+        strFind = UCase$(strFind)
+        
+        'assumption: array start at 0
+        bytSearchA = StrConv(strFind, vbFromUnicode)
+        bytSearchW = strFind
+        lngLenW = LenB(strFind)
+        
+        lngBeginS = 1
+        'find next and there is a position, start after that match
+        If mlngLastPos > 0 And Index <> 0 Then lngBeginS = mlngLastPos + Len(strFind)
+        
+        
+        For lngPos = lngBeginS To mBinFile.FileLength
+            bytFound = mBinFile.Item(lngPos)
+            
+            If bytFound = bytSearchA(0) Then
+                'test ASCII
+                blnFoundA = True
+                For lngCounter = 1 To (lngLenW \ 2) - 1
+                    If UcaseByte(mBinFile.Item(lngPos + lngCounter)) <> bytSearchA(lngCounter) Then
+                        blnFoundA = False
+                        Exit For
+                    End If
+                Next lngCounter
+                
+                If Not blnFoundA Then
+                    'test unicode
+                    blnFoundW = True
+                    For lngCounter = 1 To lngLenW - 1
+                        If UcaseByte(mBinFile.Item(lngPos + lngCounter)) <> bytSearchW(lngCounter) Then
+                            blnFoundW = False
+                            Exit For
+                        End If
+                    Next lngCounter
+                End If
+                If blnFoundA Or blnFoundW Then
+                    lngStart = lngPos
+                    Exit For
+                End If
+            End If
+        Next lngPos
+        
+        If lngStart > 0 Then
+                SetCursor lngStart
+            If blnFoundA Then
+                lblMessage = "Found ASCII match at " & FormatNum2(lngStart) & " for """ & strFind & """."
+            ElseIf blnFoundW Then
+                lblMessage = "Found Unicode match at " & FormatNum2(lngStart) & " for """ & strFind & """."
+            End If
+         Else
+            MsgBox "Text not found.", vbInformation
+            lblMessage = "Text not found."
+        End If
+    ElseIf Len(strFind) And mlngFileType = conText Then
+        lngBeginS = 1
+        If txt.SelStart + 1 > 0 And Index <> 0 Then 'find next, not at start
+            lngBeginS = txt.SelStart + Len(strFind) + 1
+        End If
+        
+        lngStart = InStr(lngBeginS, txt.Text, strFind, vbTextCompare)
+        If lngStart > 0 Then
+            txt.SelStart = lngStart - 1
+            txt.SelLength = Len(strFind)
+        ElseIf txt.Locked Then 'this txt was not changed
+            lngStart = InStr(lngBeginS, mTextFile.Text, strFind, vbTextCompare)
+            If lngStart > 0 And lngStart <= Len(txt.Text) Then 'within range of txt
+                txt.SelStart = lngStart - 1
+                txt.SelLength = Len(strFind)
+            Else
+                MsgBox "Text not found.", vbInformation, conTitle & "."
+                lblMessage = "Text not found."
+            End If
+        Else
+            MsgBox "Text not found.", vbInformation
+            lblMessage = "Text not found."
+        End If
+    End If
+    MousePointer = vbDefault
+    Exit Sub
+Handler:
+    MousePointer = vbDefault
+    Exit Sub
+
 End Sub
 
 Private Sub mnuHelpAbout_Click()

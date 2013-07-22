@@ -1,9 +1,9 @@
 VERSION 5.00
 Begin VB.Form frmAbout 
    BorderStyle     =   3  'Fixed Dialog
-   ClientHeight    =   3550
+   ClientHeight    =   3555
    ClientLeft      =   2340
-   ClientTop       =   1940
+   ClientTop       =   1935
    ClientWidth     =   5730
    ClipControls    =   0   'False
    Icon            =   "Inview_About.frx":0000
@@ -18,15 +18,15 @@ Begin VB.Form frmAbout
    Begin VB.PictureBox picIcon 
       AutoSize        =   -1  'True
       ClipControls    =   0   'False
-      Height          =   360
+      Height          =   540
       Left            =   240
       Picture         =   "Inview_About.frx":000C
-      ScaleHeight     =   215.757
+      ScaleHeight     =   345.211
       ScaleMode       =   0  'User
-      ScaleWidth      =   215.757
+      ScaleWidth      =   345.211
       TabIndex        =   1
       Top             =   240
-      Width           =   360
+      Width           =   540
    End
    Begin VB.CommandButton cmdOK 
       Cancel          =   -1  'True
@@ -52,8 +52,8 @@ Begin VB.Form frmAbout
       Index           =   1
       X1              =   84.515
       X2              =   5309.398
-      Y1              =   1687.886
-      Y2              =   1687.886
+      Y1              =   1687.583
+      Y2              =   1687.583
    End
    Begin VB.Label lblDescription 
       Caption         =   $"Inview_About.frx":00E7
@@ -78,8 +78,8 @@ Begin VB.Form frmAbout
       Index           =   0
       X1              =   98.6
       X2              =   5309.398
-      Y1              =   1698.254
-      Y2              =   1698.254
+      Y1              =   1697.936
+      Y2              =   1697.936
    End
    Begin VB.Label lblVersion 
       Caption         =   "Version"
@@ -90,7 +90,7 @@ Begin VB.Form frmAbout
       Width           =   3885
    End
    Begin VB.Label lblDisclaimer 
-      Caption         =   $"Inview_About.frx":00E7
+      Caption         =   $"Inview_About.frx":0182
       ForeColor       =   &H00000000&
       Height          =   1065
       Left            =   255
