@@ -90,7 +90,7 @@ Begin VB.Form frmAbout
       Width           =   3885
    End
    Begin VB.Label lblDisclaimer 
-      Caption         =   $"Inview_About.frx":0182
+      Caption         =   $"Inview_About.frx":018E
       ForeColor       =   &H00000000&
       Height          =   1065
       Left            =   255

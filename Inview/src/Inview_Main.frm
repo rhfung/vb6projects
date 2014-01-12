@@ -1230,7 +1230,7 @@ Private Sub mnuEdit_Click()
     
     mnuEditFind(0).Enabled = (mlngFileType = conHex And IsABinaryView) Or (mlngFileType = conText And View = conText)
     mnuEditFind(1).Enabled = mnuEditFind(0).Enabled
-    
+    mnuFindCaseInsensitive(0).Enabled = mnuEditFind(0).Enabled
     
     'mnuEditCopy.Enabled = (mlngFileType = conHex) And IsABinaryView And (mlngLastPos <> 0)
     mnuEditCopyB.Enabled = IsABinaryView And (mlngLastPos > 0) 'mnuEditCopy.Enabled

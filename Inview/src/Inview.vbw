@@ -1,10 +1,10 @@
-frmMain = 0, 0, 0, 0, C, 0, 0, 0, 0, C
+frmMain = 66, 66, 754, 481, , 90, 60, 778, 475, C
 BinFile = 0, 0, 0, 0, C
 IVRegistry = 0, 0, 0, 0, C
 modS = 0, 0, 0, 0, C
 TextFile = 0, 0, 0, 0, C
-frmAbout = 0, 0, 0, 0, C, 0, 0, 0, 0, C
-frmOptions = 0, 0, 0, 0, C, 0, 0, 0, 0, C
-frmProp = 0, 0, 0, 0, C, 0, 0, 0, 0, C
-frmConvert = 0, 0, 0, 0, C, 0, 0, 0, 0, C
-frmFindByte = 0, 0, 0, 0, C, 0, 0, 0, 0, C
+frmAbout = 0, 0, 0, 0, C, 154, 154, 842, 569, C
+frmOptions = 0, 0, 0, 0, C, 176, 176, 864, 591, C
+frmProp = 0, 0, 0, 0, C, 198, 198, 886, 613, C
+frmConvert = 44, 44, 732, 459, , 0, 0, 688, 415, C
+frmFindByte = 0, 0, 0, 0, C, 22, 22, 710, 437, C
